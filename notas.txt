@@ -11,13 +11,13 @@ modo de producción en el servidor de producción (por ejemplo, Heroku).
 _________________________________________________________________________________________________________
 tipos de solicitudes
 
-URL	        verbo	funcionalidad
-notes/10	GET	    obtiene un solo recurso
-notes	    GET	    obtiene todos los recursos en una colección
-notes	    POST	crea un nuevo recurso basado en los datos de la solicitud
-notes/10	DELETE	elimina el recurso identificado
-notes/10	PUT	    reemplaza todo el recurso identificado con los datos de la solicitud
-notes/10	PATCH	reemplaza una parte del recurso identificado con los datos de la solicitud
+URL	        verbo		funcionalidad
+notes/10	GET		obtiene un solo recurso
+notes	    	GET	    	obtiene todos los recursos en una colección
+notes	    	POST		crea un nuevo recurso basado en los datos de la solicitud
+notes/10	DELETE		elimina el recurso identificado
+notes/10	PUT		reemplaza todo el recurso identificado con los datos de la solicitud
+notes/10	PATCH		reemplaza una parte del recurso identificado con los datos de la solicitud
 ___________________________________________________________________________________________
 .use(express.json())
 

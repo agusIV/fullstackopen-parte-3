@@ -2,6 +2,68 @@ const express = require("express");
 const app = express()
 app.use(express.json())
 
+// 3.1
+let personas = [
+    {
+        id: 1,
+        nombre: "Juan Inaca",
+        numero: "040-123456"
+    },
+    {
+        id: 2,
+        nombre: "Jorge Samuel",
+        numero: "040-463854"
+    },
+    {
+        id: 3,
+        nombre: "Rodolfo Fantino",
+        numero: "040-384909"
+    },
+    {
+        id: 4,
+        nombre: "Salvio Moralez",
+        numero: "040-378965"
+    }
+]
+
+app.get("/api/persons", (solicitud, respuesta) => {
+    respuesta.json(personas)
+})
+
+// 3.2
+app.get("/info", (solicitud, respuesta) => {
+    respuesta.send(`<p>el directorio telefonico tiene informacion de ${personas.length} personas</p>
+                    <p>${new Date}</p>`)
+})
+
+// 3.3
+app.get("/api/persons/:id", (solicitud, respuesta) => {
+    const id = Number(solicitud.params.id)
+    const nota = personas.find(pers => pers.id === id)
+    if (nota) respuesta.json(nota)
+    respuesta.status(404).end()
+})
+
+// 3.4
+app.delete("/api/persons/:id", (solicitud, respuesta) =>{
+    const id = Number(solicitud.params.id)
+    personas.filter(pers => pers.id !== id)
+
+    respuesta.status(204).end()
+})
+
+// 3.5
+app.post("/api/persons", (solicitud, respuesta) => {
+    const cuerpo = solicitud.body
+    const persona = {
+        id: Math.floor(Math.random() * 1000),
+        nombre: cuerpo.nombre,
+        numero: cuerpo.numero
+    }
+    console.log(persona);
+    personas.concat(persona)
+})
+/*
 let notas = [
     {
       id: 1,
@@ -31,7 +93,7 @@ que se utiliza para manejar las solicitudes HTTP GET realizadas a la raíz "/" d
 La función acepta dos parámetros. El primer parámetro "solicitud" contiene toda la información de la solicitud HTTP 
 y el segundo parámetro respuesta se utiliza para definir cómo se responde a la solicitud.
 como la respuesta es un string, express establece automáticamente el valor del header Content-Type en text/html
-*/
+*//*
 
 app.get("/api/notas", (solicitud, respuesta) => {
     console.log("______LISTA COMPLETA______");
@@ -42,7 +104,7 @@ app.get("/api/notas", (solicitud, respuesta) => {
 que maneja las solicitudes HTTP GET realizadas a la ruta notas de la aplicación
 Llamar al método json enviará el array notes que se le pasó como un string con formato JSON. 
 Express establece automáticamente el header Content-Type con el valor apropiado de application/json.
-*/
+*//*
 
 app.get("/api/notas/:id", (solicitud, respuesta) => {
     console.log("______NOTA SOLICITADA______");
@@ -53,12 +115,12 @@ app.get("/api/notas/:id", (solicitud, respuesta) => {
         respuesta.json(nota)
     }
     respuesta.status(404).end()
-})/*Podemos definir parámetros para rutas en express usando la sintaxis de dos puntos
+})/*Podemos definir parámetros para rutas en express usando la sintaxis de dos puntos.
 Dado que no se adjuntan datos a la respuesta, 
 utilizamos el método status para establecer el estado y el método end para responder a la solicitud sin enviar ningún dato.
 no necesitamos mostrar nada en el navegador porque las API REST son interfaces diseñadas para uso programático, 
 y el código de estado de error es todo lo que se necesita.
-*/
+*//*
 
 const generarId = () => {
     const maxId = notas.length > 0
@@ -89,7 +151,7 @@ app.post("/api/notas", (solicitud, respuesta) => {
 /*es importante poner antes el return,
 porque si va despues, 
 salta un error de que se quiere modificar el header despues de que finalizó
-*/
+*//*
 
 app.delete(`/api/notas/:id`, (solicitud, respuesta) => {
     console.log("______BORRAR______");
@@ -99,7 +161,7 @@ app.delete(`/api/notas/:id`, (solicitud, respuesta) => {
 
     respuesta.status(204).end()
 })
-
+*/
 const PUERTO = 3001
 app.listen(PUERTO, () => {
     console.log(`el servidor corre en el puerto ${PUERTO}`);

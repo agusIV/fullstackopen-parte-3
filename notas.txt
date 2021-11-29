@@ -1,0 +1,58 @@
+para crear una nueva plantilla se usa: "npm init", 
+esto genera un "package.json" con la informacion de la aplicacion y scrips que se ejecuten en la consola 
+________________________________________________________________________________________________________
+dependencias de desarrollo
+
+nos referimos a herramientas que son necesarias solo durante el desarrollo de la aplicación, 
+por ejemplo, para probar o reiniciar automáticamente la aplicación, como nodemon.
+
+Estas dependencias de desarrollo no son necesarias cuando la aplicación se ejecuta en 
+modo de producción en el servidor de producción (por ejemplo, Heroku).
+_________________________________________________________________________________________________________
+tipos de solicitudes
+
+URL	        verbo	funcionalidad
+notes/10	GET	    obtiene un solo recurso
+notes	    GET	    obtiene todos los recursos en una colección
+notes	    POST	crea un nuevo recurso basado en los datos de la solicitud
+notes/10	DELETE	elimina el recurso identificado
+notes/10	PUT	    reemplaza todo el recurso identificado con los datos de la solicitud
+notes/10	PATCH	reemplaza una parte del recurso identificado con los datos de la solicitud
+___________________________________________________________________________________________
+.use(express.json())
+
+el "json-parser" transforma los datos JSON en un objeto de js
+___________________________________________________________________________________________
+
+Existen muchas herramientas para facilitar las pruebas de backends. 
+Uno de ellos es un programa de línea de comandos curl,Postman, etc
+en visual estudio existe el plugin "rest client"
+___________________________________________________________________________________________
+rest client 
+
+para usarlo hay que instalarlo haciendo "ctrl p" y pegando "ext install humao.rest-client",
+despues se crea un archivo con extension ".rest"
+y hacemos la solicitud, por ej:
+
+get http://localhost:3001/api/notas
+
+arriba de la solicitud va a aparecer un boton,
+le damos click y la solicitud se ejecuta
+se pueden separar las solicitudes con "###", por ej:
+
+get http://localhost:3001/api/notas
+
+###
+
+post http://localhost:3001/api/notas
+Content-Type: application/json
+
+{
+    "content": "sample",
+    "important": true
+}
+___________________________________________________________________________________________
+todos los objetos JavaScript son truthy, lo que significa que se evalúan como verdaderos en una operación de comparación
+Sin embargo, existen objetos sin datos que son falsy, lo que significa que se evaluará como falso.
+https://developer.mozilla.org/en-US/docs/Glossary/Truthy
+https://developer.mozilla.org/en-US/docs/Glossary/Falsy

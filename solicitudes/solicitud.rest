@@ -1,0 +1,16 @@
+get http://localhost:3001/api/notas
+
+###
+get http://localhost:3001/api/notas/2
+
+###
+
+post http://localhost:3001/api/notas
+Content-Type: application/json
+
+{
+    "contenido": "sample",
+    "importancia": true
+}
+
+###

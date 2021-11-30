@@ -55,14 +55,31 @@ app.delete("/api/persons/:id", (solicitud, respuesta) =>{
 // 3.5
 app.post("/api/persons", (solicitud, respuesta) => {
     const cuerpo = solicitud.body
+    if (!cuerpo.nombre & !cuerpo.numero){    
+        return respuesta.status(400).json({
+            error: "falta nombre o numero"
+        })
+    }  
+    if(personas.includes(cuerpo.nombre)){
+        return respuesta.status(400).json({
+            error: "la persona ya esta en el directorio"
+        })
+    }
     const persona = {
         id: Math.floor(Math.random() * 1000),
         nombre: cuerpo.nombre,
         numero: cuerpo.numero
     }
-    console.log(persona);
     personas.concat(persona)
 })
+
+const rutaDesconocida = (solicitud, respuesta) => {
+    respuesta.status(404).send({
+        error: "ruta desconocida"
+    })
+}
+
+app.use(rutaDesconocida)
 /*
 let notas = [
     {

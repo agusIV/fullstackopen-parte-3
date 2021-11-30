@@ -21,7 +21,22 @@ notes/10	PATCH		reemplaza una parte del recurso identificado con los datos de la
 ___________________________________________________________________________________________
 .use(express.json())
 
-el "json-parser" transforma los datos JSON en un objeto de js
+el "json-parser" es un middleware que transforma los datos JSON en un objeto de js,
+toma los datos sin procesar de las solicitudes que están almacenadas en el objeto solicitud, 
+los parsea en un objeto de JavaScript y lo asigna al objeto respuesta como una nueva propiedad de body.
+___________________________________________________________________________________________
+middleware
+
+Los middleware son funciones que se pueden utilizar para manejar objetos de solicitud y respuesta
+las funciones deben utilizarse antes de las rutas 
+si queremos que se ejecuten antes de llamar a los controladores de eventos de ruta.
+en el caso de que los utilizemos despues de las rutas,
+se van a ejecutar si ninguna ruta maneja la solicitud HTTP.
+
+para crear hay que hacer una funcion que reciba 3 parametros
+solicitud, respuesta y next
+cuando quieras que termine de ejecutar, 
+se invoca la funcion next()
 ___________________________________________________________________________________________
 
 Existen muchas herramientas para facilitar las pruebas de backends. 

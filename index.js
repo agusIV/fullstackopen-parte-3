@@ -1,6 +1,14 @@
 const express = require("express");
+const morgan = require("morgan")
 const app = express()
 app.use(express.json())
+// 3.8
+morgan.token("contenido", function (solicitud) {
+        return JSON.stringify(solicitud.body)
+    })
+const morgana = app.use(morgan(":contenido"))
+// 3.7
+app.use(morgan('tiny'))
 
 // 3.1
 let personas = [
@@ -55,6 +63,7 @@ app.delete("/api/persons/:id", (solicitud, respuesta) =>{
 // 3.5
 app.post("/api/persons", (solicitud, respuesta) => {
     const cuerpo = solicitud.body
+    morgana(solicitud)
     if (!cuerpo.nombre & !cuerpo.numero){    
         return respuesta.status(400).json({
             error: "falta nombre o numero"
@@ -71,6 +80,7 @@ app.post("/api/persons", (solicitud, respuesta) => {
         numero: cuerpo.numero
     }
     personas.concat(persona)
+    respuesta.json(persona)
 })
 
 const rutaDesconocida = (solicitud, respuesta) => {

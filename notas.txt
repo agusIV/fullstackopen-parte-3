@@ -27,7 +27,9 @@ los parsea en un objeto de JavaScript y lo asigna al objeto respuesta como una n
 ___________________________________________________________________________________________
 middleware
 
-Los middleware son funciones que se pueden utilizar para manejar objetos de solicitud y respuesta
+Los middleware son funciones que se pueden utilizar con el comando:
+app.use()
+para manejar objetos de solicitud y respuesta,
 las funciones deben utilizarse antes de las rutas 
 si queremos que se ejecuten antes de llamar a los controladores de eventos de ruta.
 en el caso de que los utilizemos despues de las rutas,
@@ -42,6 +44,14 @@ ________________________________________________________________________________
 Existen muchas herramientas para facilitar las pruebas de backends. 
 Uno de ellos es un programa de línea de comandos curl,Postman, etc
 en visual estudio existe el plugin "rest client"
+___________________________________________________________________________________________
+Morgan
+
+el middleware morgan imprime en consola informacion acerca de las solicitudes,
+se instala con el comando:
+npm install morgan
+y se inicia con app.use()
+documentacion: https://github.com/expressjs/morgan
 ___________________________________________________________________________________________
 rest client 
 
